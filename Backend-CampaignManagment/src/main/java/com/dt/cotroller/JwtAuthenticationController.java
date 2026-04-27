@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dt.entity.JwtResponse;
 import com.dt.entity.Users;
 import com.dt.jwt.JwtHelper;
+import com.dt.payloads.UsersDTO;
 import com.dt.service.CustomUserDetailsService;
 
 import lombok.AllArgsConstructor;
@@ -36,20 +37,23 @@ public class JwtAuthenticationController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
+  
     @Autowired
     private JwtHelper helper;
+    
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
 
     @PostMapping("/authenticate")
     public ResponseEntity<JwtResponse> login(@RequestBody Users request) throws Exception {
-    	   try {
+    	  
+ 
                authenticationManager.authenticate(
-                   new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-           } catch (BadCredentialsException e) {
-               throw new Exception("Incorrect username or password", e);
-           }
+                   new UsernamePasswordAuthenticationToken
+                                 (request.getUsername(),
+                		           request.getPassword()));
+          
 
            final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
            final String jwt = helper.generateToken(userDetails);
@@ -73,5 +77,7 @@ public class JwtAuthenticationController {
         	    "email", user.getUsername()
         	));
     }
+    
+   
 
 }

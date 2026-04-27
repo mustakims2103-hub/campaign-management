@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.dt.entity.AddCampaignForm;
-import com.dt.entity.CampaignFilterRequest;
 import com.dt.entity.StatusCountDTO;
 import com.dt.payloads.AddCampaignDTO;
 import com.dt.payloads.AssigneeDTO;
@@ -19,14 +18,9 @@ public interface ILService {
 	public AddCampaignDTO AddNewCampaign(AddCampaignDTO course);
 	
 	Page<AddCampaignDTO> getAllCampaigns(Pageable pageable);
-//	
-//	public AddCampaign addCourse(AddCampaign course);
-//	
-//	public AddCampaign updateCourse(AddCampaign course);
-//	
-	public AddCampaignForm getCampaign(Integer id);
-//	
-//	public void delCourse(Integer cId);
+	
+	public AddCampaignDTO getCampaign(Integer id);
+
 	
 	public AssigneeDTO addNewAssignee(AssigneeDTO dto);
 	
@@ -34,13 +28,13 @@ public interface ILService {
 	
 	public List<AssigneeDTO>  getAllAss();
 	
-	public boolean updateStatus(Integer id, String status);
+	public void updateStatus(Integer id, String status);
 	
 	public String addNewUser(UsersDTO user);
 	
-	public String updateCampaign(Integer id, AddCampaignForm form);
+	public String updateCampaign(Integer id, AddCampaignDTO form);
 	
-	public Page<AddCampaignForm> filterCampaigns(CampaignFilterRequest request);
+//	public Page<AddCampaignForm> filterCampaigns(CampaignFilterRequest request);
 //	
 	public List<String>  getAllStatuses();
 	

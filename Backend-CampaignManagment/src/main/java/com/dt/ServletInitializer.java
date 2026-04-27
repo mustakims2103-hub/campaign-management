@@ -9,7 +9,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(CourseReactApplication.class);
+		return application.sources(IL_CampaignManagement.class);
 	}
 	
 	

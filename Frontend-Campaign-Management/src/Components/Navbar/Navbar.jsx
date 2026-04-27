@@ -74,8 +74,8 @@ export default function Navbar() {
         <div className="flex flex-col items-center py-4">
           <div className="mb-6">
             <img
-              alt="Your Company"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+              alt="Distinct Digital Media"
+              src="https://distinctdigitalmedia.com/images/logo.png"
               className="h-12 w-12"
             />
           </div>

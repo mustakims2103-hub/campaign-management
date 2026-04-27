@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,11 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dt.entity.AddCampaignForm;
-import com.dt.entity.CampaignFilterRequest;
 import com.dt.entity.StatusCountDTO;
 import com.dt.payloads.AddCampaignDTO;
 import com.dt.payloads.AssigneeDTO;
+import com.dt.payloads.UpdateStatusDto;
 import com.dt.payloads.UsersDTO;
 import com.dt.service.ILService;
 
@@ -54,10 +54,10 @@ public class ILController {
 	}
 	
 	
-	@PostMapping("/filter-campaigns")
-	public Page<AddCampaignForm> filterCampaigns(@RequestBody CampaignFilterRequest filters) {
-	    return service.filterCampaigns(filters);
-	}
+//	@PostMapping("/filter-campaigns")
+//	public Page<AddCampaignForm> filterCampaigns(@RequestBody CampaignFilterRequest filters) {
+//	    return service.filterCampaigns(filters);
+//	}
 	
 	
 	
@@ -88,19 +88,9 @@ public class ILController {
 	
 	
 	
-	
-//	@CrossOrigin(origins = "http://localhost:5173")
-//	@PostMapping("/login")
-//    public String login(@RequestBody User loginRequest) {
-//        User user = userService.authenticateUser(loginRequest.getEmail(), loginRequest.getPassword());
-//        if (user != null) {
-//            return "Login successful";
-//        }
-//        return "Invalid credentials";
-//    }
 		
 	@GetMapping("/getCamp/{id}")
-    public AddCampaignForm getCamp(@PathVariable Integer id) {
+    public AddCampaignDTO getCamp(@PathVariable Integer id) {
        
         return service.getCampaign(id);
     }
@@ -119,38 +109,27 @@ public class ILController {
 	
 	
 	
-	@PutMapping("/status/{id}")
+	@PatchMapping("/status/{id}")
 	public String setStatus( @PathVariable Integer id,
-			                 @RequestBody AddCampaignForm request){
+			                 @RequestBody UpdateStatusDto status){
 		        
 		
-		boolean isUpdate= service.updateStatus(id, request.getStatus());
+		service.updateStatus(id, status.getStatus());
 		
-		
-		if(isUpdate) {
-			return "update successfully";
-		}
-		else {
-			return "status update to failed";
-		}
+		return "Status updated...!";
 		   
 			
 		
 	}
 	
 	
-	@PostMapping("/AddUserLogin")	
-	public String addNewUsers(@RequestBody UsersDTO user){
-		        
-		return service.addNewUser(user);
-	}
-	
+
 	
 	
 	@PutMapping("/update/{id}")
-	public String updateCamp(@PathVariable Integer id, @RequestBody AddCampaignForm form) {
+	public String updateCamp(@PathVariable Integer id, @RequestBody AddCampaignDTO dto) {
 		
-		return service.updateCampaign(id, form);
+		return service.updateCampaign(id, dto);
 	}
 	
 	
@@ -161,7 +140,11 @@ public class ILController {
 	}
 	
 	
-	
+	 @PostMapping("/AddUserLogin")	
+		public String addNewUsers(@RequestBody UsersDTO user){
+			        
+			return service.addNewUser(user);
+		}
 	
 	
 	

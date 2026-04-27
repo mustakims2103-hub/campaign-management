@@ -1,6 +1,7 @@
 package com.dt.config;
 
 import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +20,7 @@ public class DefaultUserConfig {
                 defaultUser.setUsername("user");
                 defaultUser.setPassword(passwordEncoder.encode("user"));
                 defaultUser.setEmpName("Default User");
-                defaultUser.setRoles("USER");
+                defaultUser.setRoles("admin");
 
                 userRepository.save(defaultUser);
                 System.out.println("✅ Default user 'user' created with BCrypt password.");

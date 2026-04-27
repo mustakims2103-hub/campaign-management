@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.dt.entity.Assignee;
+
 import lombok.Data;
 
 

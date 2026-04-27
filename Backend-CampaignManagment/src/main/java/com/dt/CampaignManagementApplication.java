@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class CourseReactApplication {
+public class CampaignManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CourseReactApplication.class, args);
+		SpringApplication.run(CampaignManagementApplication.class, args);
 	}
 //	
 	@Bean
